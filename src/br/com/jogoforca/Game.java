@@ -4,10 +4,18 @@ import java.util.Scanner;
 
 public class Game {
 
+    private final Player player;
+    private final Word word;
+    private final Hangman hangman;
+
+    public Game(Player player, Word word, Hangman hangman){
+        this.player  = player;
+        this.word = word;
+        this.hangman = hangman;
+    }
+
     public void run(){
-        Player player = new Player(new Scanner(System.in));
-        Word word = new Word("Batatinha");
-        Hangman hangman = new Hangman();
+
         while(notFinished(word, hangman)){
             hangman.printFork();
             word.print();
@@ -27,9 +35,5 @@ public class Game {
 
     private boolean notFinished(Word word, Hangman hangman) {
         return !word.isCompleted() && !hangman.isFinishedFork();
-    }
-
-    public static void main(String[] args) {
-        new Game().run();
     }
 }
